@@ -1,4 +1,6 @@
-﻿using System;
+﻿//A simple C# .NET wave reader library from http://code.google.com/p/dot-net-wave-reader/
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
