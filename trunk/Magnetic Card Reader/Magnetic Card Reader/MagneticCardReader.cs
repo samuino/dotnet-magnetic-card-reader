@@ -38,13 +38,13 @@ namespace Magnetic_Card_Reader
 
             char[] charTableTrack2 = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '<', '=', '>', '?'};
 
-            char[] charsData = new char[1024];
+            char[] charsData = new char[64];
 
-            for (int i = 0; i < 1024; i++ )
+            for (int i = 0; i < 64; i++ )
             {
                 if (getParity(decodedData[i])==0)
                 {
-                    charsData[i] = '°';
+                    charsData[i] = '_';
                 }
                 else
                 {
