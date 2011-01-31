@@ -13,21 +13,20 @@ namespace Magnetic_Card_Reader
 {
     public partial class Form1 : Form
     {
-        MagneticCardReader mcReader = new MagneticCardReader();
-
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             int yVal;
             int lastyVal = 0;
             int currSide = 1;
             bool currStateHi = false;
 
-            Stream inpFile = new StreamReader("..\\..\\..\\test3 - ec k - rev.wav").BaseStream;
+            MagneticCardReader mcReader = new MagneticCardReader();
+            Stream inpFile = new StreamReader(textBox1.Text).BaseStream;
             WaveData wavData = new WaveData(inpFile);
 
             for (int i = 0; i < wavData.NumberOfFrames; i++)
@@ -44,13 +43,13 @@ namespace Magnetic_Card_Reader
 
                 if (lastyVal * yVal < 1)
                 {
-                    currSide = Convert.ToInt32(!currStateHi)*2-1;
+                    currSide = Convert.ToInt32(!currStateHi) * 2 - 1;
                 }
 
                 lastyVal = yVal;
             }
 
-            label1.Text = "Output: " + mcReader.getDataString();
+            textBox2.Text = mcReader.getDataString();
             inpFile.Close();
         }
 
