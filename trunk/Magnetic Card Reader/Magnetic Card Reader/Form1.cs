@@ -34,10 +34,12 @@ namespace Magnetic_Card_Reader
                 yVal = wavData.Samples[0][i];
                 if (yVal > 0x7FFF) yVal -= 0xFFFF;
 
-                if (((lastyVal < yVal && currSide < 0) || (lastyVal > yVal && currSide > 0)) && (System.Math.Abs(yVal) > 0xFF))
+                //Call addNewSignalState on zero crossing:
+                if (((lastyVal < yVal && currSide < 0) || (lastyVal > yVal && currSide > 0)) && (System.Math.Abs(yVal) > 0xFF)) 
                 {
                     currSide = 0;
                     currStateHi = (yVal > 0xFF);
+
                     mcReader.addNewSignalState(i, Convert.ToInt32(currStateHi));
                 }
 
